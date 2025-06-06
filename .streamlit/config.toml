@@ -1,0 +1,21 @@
+[server]
+enableXsrfProtection = false
+enableCORS = false
+headless = true
+allowRunOnSave = false
+
+[browser]
+gatherUsageStats = false
+serverAddress = "0.0.0.0"
+
+[theme]
+base = "light"
+primaryColor = "#667eea"
+backgroundColor = "#ffffff"
+secondaryBackgroundColor = "#f0f2f6"
+textColor = "#262730"
+
+[client]
+caching = true
+displayEnabled = true
+showErrorDetails = false
