@@ -5,16 +5,54 @@ from langchain.indexes import VectorstoreIndexCreator
 from langchain.chains import RetrievalQA
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 import streamlit as st
-from dotenv import load_dotenv
-import os
 
 # Import Groq
 from groq import Groq
 from langchain_groq import ChatGroq
 
-load_dotenv() 
+# Configure Streamlit to allow iframe embedding
+st.set_page_config(
+    page_title="HoteMate Assistant",
+    page_icon="🤖",
+    layout="wide",
+    initial_sidebar_state="collapsed"
+)
 
-st.title('🤖 HoteMate Chatbot')
+# Add CSS to hide Streamlit branding and make it iframe-friendly
+st.markdown("""
+<style>
+    /* Hide Streamlit branding */
+    #MainMenu {visibility: hidden;}
+    footer {visibility: hidden;}
+    header {visibility: hidden;}
+    
+    /* Remove padding for iframe */
+    .block-container {
+        padding-top: 1rem;
+        padding-bottom: 0rem;
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+    
+    /* Hide deploy button */
+    .stDeployButton {display:none;}
+    
+    /* Iframe-friendly styling */
+    .stApp {
+        background: transparent;
+    }
+    
+    /* Chat styling */
+    .stChatMessage {
+        margin-bottom: 1rem;
+    }
+    .stSpinner {
+        text-align: center;
+    }
+</style>
+""", unsafe_allow_html=True)
+
+st.title('🤖 HoteMate Assistant')
 
 # Initialize Groq
 groq_api_key = st.secrets["GROQ_API_KEY"]
@@ -108,15 +146,4 @@ if prompt := st.chat_input("Ask me anything about hotel services..."):
         error_msg = "Sorry, I'm not properly configured. Please check the API key and PDF file."
         with st.chat_message("assistant"):
             st.markdown(error_msg)
-        st.session_state.messages.append({'role': 'assistant', 'content': error_msg})    
-
-st.markdown("""
-<style>
-    .stChatMessage {
-        margin-bottom: 1rem;
-    }
-    .stSpinner {
-        text-align: center;
-    }
-</style>
-""", unsafe_allow_html=True)
+        st.session_state.messages.append({'role': 'assistant', 'content': error_msg})
