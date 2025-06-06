@@ -155,7 +155,7 @@ with st.sidebar:
     
     # Hotel website button
     if st.button("🌐 Visit Hotel Website"):
-        components.iframe("https://web.hotelmate.app/", height=500)
+        components.iframe("https://hotelmate.vercel.app/", height=500)
     
     st.markdown("---")
     st.subheader("💡 Sample Questions")
