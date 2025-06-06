@@ -17,7 +17,7 @@ load_dotenv()
 st.title('🤖 HoteMate Chatbot')
 
 # Initialize Groq
-groq_api_key = os.getenv('GROQ_API_KEY')
+groq_api_key = st.secrets["GROQ_API_KEY"]
 
 if groq_api_key:
     client = Groq(api_key=groq_api_key)
