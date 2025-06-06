@@ -9,7 +9,7 @@ gatherUsageStats = false
 serverAddress = "0.0.0.0"
 
 [theme]
-base = "light"
+base = "dark"
 primaryColor = "#667eea"
 backgroundColor = "#ffffff"
 secondaryBackgroundColor = "#f0f2f6"

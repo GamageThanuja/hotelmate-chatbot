@@ -100,7 +100,7 @@ if 'messages' not in st.session_state:
 
 # Add welcome message if no messages exist
 if not st.session_state.messages:
-    welcome_msg = "Hello! I'm your HoteMate assistant. I can help you with questions about hotel management, bookings, and services. How can I assist you today?"
+    welcome_msg = "How can I assist you today?"
     st.session_state.messages.append({'role': 'assistant', 'content': welcome_msg})
 
 # Display chat history
@@ -148,24 +148,3 @@ if prompt := st.chat_input("Ask me anything about hotel services..."):
         with st.chat_message("assistant"):
             st.markdown(error_msg)
         st.session_state.messages.append({'role': 'assistant', 'content': error_msg})
-
-# Simple sidebar with hotel website
-with st.sidebar:
-    st.header("🏨 Quick Access")
-    
-    # Hotel website button
-    if st.button("🌐 Visit Hotel Website"):
-        components.iframe("https://hotelmate.vercel.app/", height=500)
-    
-    st.markdown("---")
-    st.subheader("💡 Sample Questions")
-    st.markdown("""
-    - What should I do if I forget my password?
-    - How long does a login session last?
-    - How do I verify my email address?
-    - What documents do I need for account validation?
-    """)
-    
-    st.markdown("---")
-    st.subheader("ℹ️ About")
-    st.markdown("This chatbot uses AI to answer questions based on the HoteMate documentation.")
