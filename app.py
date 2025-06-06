@@ -5,6 +5,7 @@ from langchain.indexes import VectorstoreIndexCreator
 from langchain.chains import RetrievalQA
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 import streamlit as st
+import streamlit.components.v1 as components
 
 # Import Groq
 from groq import Groq
@@ -147,3 +148,24 @@ if prompt := st.chat_input("Ask me anything about hotel services..."):
         with st.chat_message("assistant"):
             st.markdown(error_msg)
         st.session_state.messages.append({'role': 'assistant', 'content': error_msg})
+
+# Simple sidebar with hotel website
+with st.sidebar:
+    st.header("🏨 Quick Access")
+    
+    # Hotel website button
+    if st.button("🌐 Visit Hotel Website"):
+        components.iframe("https://web.hotelmate.app/", height=500)
+    
+    st.markdown("---")
+    st.subheader("💡 Sample Questions")
+    st.markdown("""
+    - What should I do if I forget my password?
+    - How long does a login session last?
+    - How do I verify my email address?
+    - What documents do I need for account validation?
+    """)
+    
+    st.markdown("---")
+    st.subheader("ℹ️ About")
+    st.markdown("This chatbot uses AI to answer questions based on the HoteMate documentation.")
