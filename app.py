@@ -13,8 +13,8 @@ from langchain_groq import ChatGroq
 
 # Configure Streamlit to allow iframe embedding
 st.set_page_config(
-    page_title="HoteMate Assistant",
-    page_icon="🤖",
+    page_title="HotelMate AI",
+    page_icon="favicon.ico",
     layout="wide",
     initial_sidebar_state="collapsed"
 )
@@ -53,7 +53,27 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-st.title('🤖 HoteMate Assistant')
+# Create title with app icon inline
+import base64
+
+# Function to convert image to base64
+def get_base64_of_image(path):
+    try:
+        with open(path, "rb") as img_file:
+            return base64.b64encode(img_file.read()).decode()
+    except:
+        return None
+
+# Get base64 of the image
+img_base64 = get_base64_of_image("app-icon.png")
+
+if img_base64:
+    st.markdown(
+        f'<h1 style="display: flex; align-items: center;"><img src="data:image/png;base64,{img_base64}" width="32" style="margin-right: 8px;"> <span style="margin-top: 3px;">HotelMate AI</span></h1>',
+        unsafe_allow_html=True
+    )
+else:
+    st.title('🤖 HotelMate AI')
 
 # Initialize Groq
 groq_api_key = st.secrets["GROQ_API_KEY"]
@@ -109,7 +129,7 @@ for message in st.session_state.messages:
         st.markdown(message['content'])
 
 # Chat input
-if prompt := st.chat_input("Ask me anything about hotel services..."):
+if prompt := st.chat_input("Ask me anything about our hotel services..."):
     # Add user message to chat history
     st.session_state.messages.append({'role': 'user', 'content': prompt})
     with st.chat_message("user"):
